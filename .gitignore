@@ -2,4 +2,6 @@
 *.swp
 .idea/
 lib/
-scripts/
+Scripts/
+/__pycache__
+/venv
