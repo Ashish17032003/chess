@@ -1,3 +1,9 @@
+"""
+Main driver file.
+Handling user input.
+Displaying current GameStatus object.
+"""
+
 import pygame as p
 import Engine
 
@@ -7,13 +13,13 @@ SQ_SIZE = HEIGHT // DIMENSION
 MAX_FPS = 15  # for animations later on
 IMAGES = {}
 
-'''
+"""
 Initialize a global dictionary of images. This will be called exactly once in the main. 
-'''
+"""
 
 
 def loadImages():
-    pieces = ['wp', 'wR', 'wN', 'WB', 'WK', 'wQ', 'bp', 'bR', 'bN', 'bB', 'bk', 'bQ']
+    pieces = ['wp', 'wR', 'wN', 'wB', 'wK', 'wQ', 'bp', 'bR', 'bN', 'bB', 'bK', 'bQ']
     for piece in pieces:
         IMAGES[piece] = p.transform.scale(p.image.load("images/" + piece + ".png"), (SQ_SIZE, SQ_SIZE))
 
@@ -37,6 +43,7 @@ def main():
             if e.type == p.QUIT:
                 running = False
 
+        drawGameState(screen, gs)   
         clock.tick(MAX_FPS)
         p.display.flip()
 
@@ -77,7 +84,7 @@ def drawPieces(screen, board):
         for c in range(DIMENSION):
             piece = board[r][c]
             if piece != "--":  # not an empty square
-                screen.blit(IMAGES[piece], p.Rect(c * SQ_SIZE, r * SQ_SIZE, SQ_SIZE, SQ_SIZE))
+                screen.blit( IMAGES[piece], p.Rect(c * SQ_SIZE, r * SQ_SIZE, SQ_SIZE, SQ_SIZE))
 
 
 if __name__ == '__main__':
