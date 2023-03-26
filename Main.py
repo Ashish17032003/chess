@@ -46,10 +46,14 @@ def main():
             if e.type == p.QUIT:
                 running = False
 
+            
+            # Mouse Handlers
+
             elif e.type == p.MOUSEBUTTONDOWN:
                 location = p.mouse.get_pos()  # (x,y) location of mouse
                 col = location[0] // SQ_SIZE
                 row = location[1] // SQ_SIZE
+                
                 # we know where we clicked now ( i.e. what piece we have selected )
                 if sqSelected == (row, col):  # the user clicked the same square twice
                     sqSelected = ()  # deselect i.e. empty
@@ -66,6 +70,14 @@ def main():
                     sqSelected = ()  # reset user clicks
                     playerClicks = []
 
+
+            # Key Handlers
+
+            elif e.type == p.KEYDOWN:
+                if e.key == p.K_z: #undo when 'z' is pressed
+                    gs.undoMove()
+
+            
         drawGameState(screen, gs)
         clock.tick(MAX_FPS)
         p.display.flip()
